@@ -37,8 +37,8 @@
     }
   },
   "logo": {
-    "light": "/images/LogomarkbeyondnoiseBlack.svg",
-    "dark": "/images/LogomarkbeyondnoiseWhite.svg"
+    "light": "/images/LogoTypografieBlack.svg",
+    "dark": "/images/LogoTypografieWhite.svg"
   },
   "navbar": {
     "links": [
