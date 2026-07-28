@@ -4,7 +4,8 @@
   "name": "BeyondNoise",
   "colors": {
     "primary": "#1F33EA",
-    "light": "#3A60F8"
+    "light": "#3A60F8",
+    "dark": "#1F33EA"
   },
   "favicon": {
     "light": "/images/LogomarkbeyondnoiseBlack.svg",
