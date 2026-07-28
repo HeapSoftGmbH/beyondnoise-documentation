@@ -1,13 +1,16 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "theme": "willow",
+  "name": "BeyondNoise",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.svg",
+  "favicon": {
+    "light": "/images/LogomarkbeyondnoiseBlack.svg",
+    "dark": "/images/LogomarkbeyondnoiseWhite.svg"
+  },
   "navigation": {
     "pages": [
       {
@@ -34,8 +37,8 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/LogomarkbeyondnoiseBlack.svg",
+    "dark": "/images/LogomarkbeyondnoiseWhite.svg"
   },
   "navbar": {
     "links": [
@@ -68,5 +71,12 @@
       "github": "https://github.com/mintlify",
       "linkedin": "https://linkedin.com/company/mintlify"
     }
+  },
+  "description": "Decisions made without structured intelligence on competitors, market shifts, or customers lead to critical failures. Lose sight of the problem you solve, and your product drifts.",
+  "icons": {
+    "library": "lucide"
+  },
+  "fonts": {
+    "family": "Geist"
   }
 }
