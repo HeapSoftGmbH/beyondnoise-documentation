@@ -3,9 +3,8 @@
   "theme": "mint",
   "name": "BeyondNoise",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#1F33EA",
+    "light": "#3A60F8"
   },
   "favicon": {
     "light": "/images/LogomarkbeyondnoiseBlack.svg",
