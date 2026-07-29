@@ -1,34 +1,23 @@
 ---
 title: "Authentication"
-description: "Sign in to BeyondNoise with Google OAuth or email + OTP"
+description: "Sign in to BeyondNoise with Google OAuth or email"
 ---
 
-BeyondNoise supports two sign-in methods: Google OAuth and email with one-time passcode (OTP).
+BeyondNoise supports two sign-in methods: Google OAuth and email.
 
 ## Sign in with Google
 
-1. Navigate to the [login page](https://beyondnoise.io/auth/login).
+1. Navigate to the [login page](https://app.beyondnoise.io/auth/login).
 2. Click **Sign in with Google**.
 3. Complete the Google OAuth flow in the popup window.
 4. You'll be redirected back to BeyondNoise automatically.
 
 ## Sign in with email
 
-1. Navigate to the [login page](https://beyondnoise.io/auth/login).
-2. Enter your email address in the email field below the OAuth buttons.
-3. Click **Send code**.
-4. Check your inbox for a 6-digit one-time passcode.
-5. Enter the code in the OTP input.
-6. You'll be logged in and redirected to your workspaces.
+1. Navigate to the [login page](https://app.beyondnoise.io/auth/login).
+2. Enter your email address in the email field
+3. Use your OTP for sign in.
 
 <Note>
   The OTP is valid for a limited time. If it expires, request a new code.
 </Note>
-
-## Session management
-
-BeyondNoise uses JWT-validated sessions via Supabase Auth. Your session persists across browser restarts. To log out, click the **Logout** button on the workspaces page.
-
-## Authentication for API access
-
-BeyondNoise supports OAuth 2.0 consent flows for third-party applications. When an external app requests access to your account, you'll see a consent screen listing the requested scopes. You can approve or deny the request.
