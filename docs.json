@@ -25,7 +25,33 @@
       {
         "group": "Getting Started",
         "pages": [
-          "index"
+          "index",
+          "authentication",
+          "workspaces",
+          "onboarding"
+        ]
+      },
+      {
+        "group": "Features",
+        "icon": {
+          "name": "rocket",
+          "library": "lucide"
+        },
+        "pages": [
+          "research",
+          "continuous-research",
+          "brand-context"
+        ]
+      },
+      {
+        "group": "Settings",
+        "icon": {
+          "name": "settings",
+          "library": "lucide"
+        },
+        "pages": [
+          "settings/general",
+          "settings/billing"
         ]
       }
     ]
