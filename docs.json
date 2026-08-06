@@ -53,6 +53,16 @@
           "settings/general",
           "settings/billing"
         ]
+      },
+      {
+        "group": "Integrations",
+        "icon": {
+          "name": "blocks",
+          "library": "lucide"
+        },
+        "pages": [
+          "mcp"
+        ]
       }
     ]
   },
