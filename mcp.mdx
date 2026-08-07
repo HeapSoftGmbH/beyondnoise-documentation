@@ -16,24 +16,7 @@ The MCP server is available at:
 https://app.beyondnoise.io/api/mcp
 ```
 
-It uses the **Streamable HTTP** transport (stateless, no sessions). Your AI client connects to the endpoint, authenticates via OAuth, and can then call any of the 8 available tools.
-
-All tool calls execute as your authenticated user, meaning **Row Level Security is enforced** — you can only access workspaces and data you own.
-
-## Authentication
-
-The MCP server uses **OAuth 2.0** with Supabase Auth as the authorization server.
-
-When your AI client first connects, it will:
-
-1. Discover the OAuth server via the `/.well-known/oauth-protected-resource` endpoint.
-2. Redirect you to the BeyondNoise login page.
-3. Ask you to approve the connection on the consent screen.
-4. Receive an access token used for all subsequent tool calls.
-
-<Note>
-  You only need to authenticate once. Your AI client will store the token and reuse it for future sessions.
-</Note>
+Your AI client connects to the endpoint, authenticates, and can then call any of the 8 available tools. All tool calls execute as your authenticated user.
 
 ## Connecting your AI client
 
@@ -60,29 +43,6 @@ Add the server in **Settings \> MCP** or edit `.cursor/mcp.json`:
   "mcpServers": {
     "beyondnoise": {
       "url": "https://app.beyondnoise.io/api/mcp"
-    }
-  }
-}
-```
-
-### Other Streamable HTTP clients
-
-Any client that supports the MCP Streamable HTTP transport can connect by pointing to:
-
-```text
-https://app.beyondnoise.io/api/mcp
-```
-
-### stdio-only clients
-
-If your client only supports stdio transport, use the `mcp-remote` bridge:
-
-```json
-{
-  "mcpServers": {
-    "beyondnoise": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://app.beyondnoise.io/api/mcp"]
     }
   }
 }
