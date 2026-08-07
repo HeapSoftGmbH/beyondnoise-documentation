@@ -61,7 +61,7 @@
           "library": "lucide"
         },
         "pages": [
-          "mcp"
+          "mcp-integration"
         ]
       }
     ]
@@ -106,5 +106,12 @@
   },
   "fonts": {
     "family": "Geist"
-  }
+  },
+  "redirects": [
+    {
+      "source": "/mcp",
+      "destination": "/mcp-integration",
+      "permanent": true
+    }
+  ]
 }
