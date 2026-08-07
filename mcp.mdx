@@ -1,0 +1,157 @@
+---
+title: "MCP Integration"
+description: "Connect AI clients like Claude Desktop and Cursor to BeyondNoise via the Model Context Protocol"
+icon:
+  name: "plug"
+  library: "lucide"
+---
+
+BeyondNoise exposes an MCP (Model Context Protocol) server that lets AI clients like Claude Desktop, Cursor, and opencode interact with your workspaces, research, and brand context programmatically.
+
+## How it works
+
+The MCP server is available at:
+
+```text
+https://app.beyondnoise.io/api/mcp
+```
+
+Your AI client connects to the endpoint, authenticates, and can then call any of the 8 available tools. All tool calls execute as your authenticated user.
+
+## Connecting your AI client
+
+### Claude Desktop
+
+Add the following to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "beyondnoise": {
+      "url": "https://app.beyondnoise.io/api/mcp"
+    }
+  }
+}
+```
+
+### Cursor
+
+Add the server in **Settings \> MCP** or edit `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "beyondnoise": {
+      "url": "https://app.beyondnoise.io/api/mcp"
+    }
+  }
+}
+```
+
+## Available tools
+
+| Tool | Description |
+| --- | --- |
+| `list_workspaces` | List all workspaces you have access to |
+| `run_research` | Run an ad-hoc research query |
+| `read_research` | Read a saved research result by ID |
+| `create_continuous_research` | Create a scheduled continuous research topic |
+| `update_continuous_research` | Update an existing continuous research topic |
+| `read_continuous_research` | Read a continuous research topic by ID |
+| `read_brand_context` | Read the brand context for a workspace |
+| `update_brand_context` | Create or update the brand context for a workspace |
+
+<Tip>
+  Call `list_workspaces` first to get valid `workspaceId` values for the other tools.
+</Tip>
+
+### list\_workspaces
+
+Lists all workspaces the authenticated user can access. Returns `id`, `name`, `slug`, `website`, and `role` for each workspace.
+
+**Parameters:** none
+
+### run\_research
+
+Runs an ad-hoc research query for a workspace. Returns the generated content, citations, and the result ID.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `workspaceId` | UUID | Yes | The workspace to run research in |
+| `content` | string | Yes | The research question |
+| `level` | enum | No | Research depth: `auto`, `minimal`, `low`, `medium`, `high`, `xhigh` |
+| `includeBrandContext` | boolean | No | Include the workspace's brand context |
+| `dataSources` | string\[\] | No | Specific data sources to query |
+| `resultId` | UUID | No | Pass with `previousRunId` to continue a thread |
+| `previousRunId` | string | No | Previous run ID for thread continuation |
+
+### read\_research
+
+Reads a saved ad-hoc research result by ID, including its message thread.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `resultId` | UUID | Yes | The research result ID |
+
+### create\_continuous\_research
+
+Creates a continuous research topic with a schedule and runs the first research immediately. Returns content, citations, and the topic ID.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `workspaceId` | UUID | Yes | The workspace to create the topic in |
+| `content` | string | Yes | The research question |
+| `level` | enum | No | Research depth: `auto`, `minimal`, `low`, `medium`, `high`, `xhigh` |
+| `schedule` | enum | No | How often to run: `daily`, `weekly`, `monthly` |
+| `includeBrandContext` | boolean | No | Include the workspace's brand context |
+| `dataSources` | string\[\] | No | Specific data sources to query |
+
+### update\_continuous\_research
+
+Updates an existing continuous research topic. Only provided fields are updated.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `topicId` | UUID | Yes | The continuous research topic ID |
+| `prompt` | string | No | New research question |
+| `level` | enum | No | Research depth: `auto`, `minimal`, `low`, `medium`, `high`, `xhigh` |
+| `schedule` | enum | No | How often to run: `daily`, `weekly`, `monthly` |
+| `isActive` | boolean | No | Activate or pause the topic |
+| `dataSources` | string\[\] | No | Specific data sources to query |
+
+### read\_continuous\_research
+
+Reads a continuous research topic by ID, including its schedule and the latest result.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `topicId` | UUID | Yes | The continuous research topic ID |
+
+### read\_brand\_context
+
+Reads the brand context prompt for a workspace.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `workspaceId` | UUID | Yes | The workspace ID |
+
+### update\_brand\_context
+
+Creates or updates the brand context prompt for a workspace.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `workspaceId` | UUID | Yes | The workspace ID |
+| `prompt` | string | Yes | The brand context text |
+
+## Example usage
+
+Once connected, you can ask your AI client things like:
+
+- "List my workspaces"
+- "Run a research on my top 3 competitors' pricing strategies"
+- "Create a weekly continuous research tracking AI features in my competitors' products"
+- "Read the brand context for my workspace"
+- "Update my brand context to emphasize our focus on enterprise customers"
+
+The AI client will automatically select the right tool and parameters based on your request.
