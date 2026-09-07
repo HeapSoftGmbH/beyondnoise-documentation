@@ -38,6 +38,7 @@
           "library": "lucide"
         },
         "pages": [
+          "competitors",
           "research",
           "continuous-research",
           "brand-context"
